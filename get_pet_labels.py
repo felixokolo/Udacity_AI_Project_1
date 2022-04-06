@@ -61,5 +61,5 @@ def get_pet_labels(image_dir):
     
     label = {x: [] for x in file_list}
     for x in label:
-        label[x].append(label_str[list(label.keys()).index(x)].lower())
+        label[x].append(label_str[list(label.keys()).index(x)].lower().strip())
     return label
