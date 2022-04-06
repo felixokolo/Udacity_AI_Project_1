@@ -47,19 +47,19 @@ def get_pet_labels(image_dir):
     label_list = []
     for filename in file_list:
         if filename[0] != '.' and filename[-4:] == '.jpg':
-            label_list.append(path.splitext(filename)[0].split("_"))
+            label_list.append((filename, path.splitext(filename)[0].split("_")))
         
     label_str = []
     for l in label_list:
         stri = []
         
-        for w in l:
+        for w in l[1]:
             if w.isalpha() == True:
                 stri.append(w)
                 
         label_str.append(" ".join(stri))
     
-    label = {x: [] for x in file_list}
+    label = {x[0]: [] for x in label_list}
     for x in label:
         label[x].append(label_str[list(label.keys()).index(x)].lower().strip())
     return label
